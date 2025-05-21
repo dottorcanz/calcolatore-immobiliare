@@ -1,201 +1,181 @@
 <!DOCTYPE html>
 <html lang="it">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Calcolo Costi e ROI Immobiliare</title>
-<style>
-  body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #000000;
-    margin: 0;
-    padding: 50px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-    color: #000000;
-  }
-
-  .container {
-    background: #FFFFFF;
-    padding: 36px 44px 52px 44px;
-    border-radius: 14px;
-    box-shadow: 0 6px 28px rgba(197,169,94,0.35);
-    max-width: 660px;
-    width: 100%;
-    text-align: center;
-    border: 3px solid #C5A95E;
-  }
-
-  h2 {
-    margin-bottom: 40px;
-    font-size: 2.6rem;
-    font-weight: 700;
-    color: #C5A95E;
-    text-shadow: 0 0 6px rgba(197,169,94,0.6);
-  }
-
-  label {
-    display: block;
-    margin-top: 30px;
-    font-weight: 600;
-    font-size: 1.2rem;
-    text-align: left;
-    color: #000000;
-  }
-
-  input, select {
-    width: 100%;
-    padding: 14px 16px;
-    margin-top: 10px;
-    font-size: 1.1rem;
-    border: 2px solid #C5A95E;
-    border-radius: 10px;
-    color: #000000;
-    background: #FFFFFF;
-    box-sizing: border-box;
-  }
-
-  input::placeholder {
-    color: #C5A95E;
-    opacity: 0.75;
-  }
-
-  input:focus, select:focus {
-    border-color: #000000;
-    outline: none;
-    box-shadow: 0 0 12px rgba(197,169,94,0.8);
-  }
-
-  .error {
-    color: #d63031;
-    font-size: 0.9rem;
-    margin-top: 6px;
-    text-align: left;
-  }
-
-  button {
-    margin-top: 44px;
-    width: 48%;
-    padding: 18px 0;
-    background-color: #C5A95E;
-    color: #000000;
-    border: none;
-    border-radius: 10px;
-    font-size: 1.3rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: background-color 0.35s ease, color 0.35s ease;
-    box-shadow: 0 4px 12px rgba(197,169,94,0.5);
-  }
-
-  button:hover {
-    background-color: #a3853f;
-    color: #FFFFFF;
-  }
-
-  button.reset {
-    background-color: #999999;
-    margin-left: 4%;
-  }
-
-  button.reset:hover {
-    background-color: #666666;
-  }
-
-  .risultato {
-    margin-top: 44px;
-    background: #FFFFFF;
-    padding: 28px 26px;
-    border-radius: 14px;
-    box-shadow: 0 0 22px rgba(197,169,94,0.25);
-    font-size: 1.15rem;
-    color: #000000;
-    text-align: left;
-    border: 2px solid #C5A95E;
-  }
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 20px;
-    font-size: 1.1rem;
-    background-color: #FFFFFF;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 12px rgba(197,169,94,0.15);
-  }
-
-  th, td {
-    border: 1.5px solid #C5A95E;
-    padding: 12px 14px;
-    text-align: left;
-  }
-
-  th {
-    background-color: #F7F1E1;
-    font-weight: 700;
-    color: #C5A95E;
-  }
-
-  .roi {
-    margin-top: 30px;
-    padding: 18px 22px;
-    border-radius: 12px;
-    font-weight: 600;
-    color: #000000;
-  }
-
-  .roi.basso {
-    background-color: #FCE9D7;
-    border: 1.5px solid #C5A95E;
-  }
-
-  .roi.medio {
-    background-color: #F8F6F0;
-    border: 1.5px solid #C5A95E;
-  }
-
-  .roi.alto {
-    background-color: #F2F8F1;
-    border: 1.5px solid #C5A95E;
-  }
-
-  .roi.oro {
-    background-color: #FFF9E5;
-    border: 2px solid #C5A95E;
-    font-weight: 700;
-  }
-
-  @media (max-width: 700px) {
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Calcolo Costi e ROI Immobiliare</title>
+  <style>
     body {
-      padding: 20px 15px;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #000000;
+      margin: 0;
+      padding: 50px 20px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      color: #000000;
     }
     .container {
-      padding: 26px 24px 36px;
+      background: #FFFFFF;
+      padding: 36px 44px 52px 44px;
+      border-radius: 14px;
+      box-shadow: 0 6px 28px rgba(197,169,94,0.35);
+      max-width: 660px;
+      width: 100%;
+      text-align: center;
+      border: 3px solid #C5A95E;
     }
     h2 {
-      font-size: 2.1rem;
+      margin-bottom: 40px;
+      font-size: 2.6rem;
+      font-weight: 700;
+      color: #C5A95E;
+      text-shadow: 0 0 6px rgba(197,169,94,0.6);
     }
-    label, input, select, button {
-      font-size: 1rem;
+    label {
+      display: block;
+      margin-top: 30px;
+      font-weight: 600;
+      font-size: 1.2rem;
+      text-align: left;
+      color: #000000;
     }
-    table, th, td {
-      font-size: 0.95rem;
+    input, select {
+      width: 100%;
+      padding: 14px 16px;
+      margin-top: 10px;
+      font-size: 1.1rem;
+      border: 2px solid #C5A95E;
+      border-radius: 10px;
+      color: #000000;
+      background: #FFFFFF;
+      box-sizing: border-box;
     }
-    .roi {
-      font-size: 1rem;
+    input::placeholder {
+      color: #C5A95E;
+      opacity: 0.75;
+    }
+    input:focus, select:focus {
+      border-color: #000000;
+      outline: none;
+      box-shadow: 0 0 12px rgba(197,169,94,0.8);
+    }
+    .error {
+      color: #d63031;
+      font-size: 0.9rem;
+      margin-top: 6px;
+      text-align: left;
     }
     button {
-      width: 100%;
-      margin: 15px 0 0 0;
+      margin-top: 44px;
+      width: 48%;
+      padding: 18px 0;
+      background-color: #C5A95E;
+      color: #000000;
+      border: none;
+      border-radius: 10px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: background-color 0.35s ease, color 0.35s ease;
+      box-shadow: 0 4px 12px rgba(197,169,94,0.5);
+    }
+    button:hover {
+      background-color: #a3853f;
+      color: #FFFFFF;
     }
     button.reset {
-      margin-left: 0;
+      background-color: #999999;
+      margin-left: 4%;
     }
-  }
-</style>
+    button.reset:hover {
+      background-color: #666666;
+    }
+    .risultato {
+      margin-top: 44px;
+      background: #FFFFFF;
+      padding: 28px 26px;
+      border-radius: 14px;
+      box-shadow: 0 0 22px rgba(197,169,94,0.25);
+      font-size: 1.15rem;
+      color: #000000;
+      text-align: left;
+      border: 2px solid #C5A95E;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      font-size: 1.1rem;
+      background-color: #FFFFFF;
+      border-radius: 10px;
+      overflow: hidden;
+      box-shadow: 0 2px 12px rgba(197,169,94,0.15);
+    }
+    th, td {
+      border: 1.5px solid #C5A95E;
+      padding: 12px 14px;
+      text-align: left;
+    }
+    th {
+      background-color: #F7F1E1;
+      font-weight: 700;
+      color: #C5A95E;
+    }
+    .roi {
+      margin-top: 30px;
+      padding: 18px 22px;
+      border-radius: 12px;
+      font-weight: 600;
+      color: #000000;
+      font-size: 1rem;
+    }
+    .roi.basso {
+      background-color: #FCE9D7;
+      border: 1.5px solid #C5A95E;
+    }
+    .roi.medio {
+      background-color: #F8F6F0;
+      border: 1.5px solid #C5A95E;
+    }
+    .roi.alto {
+      background-color: #F2F8F1;
+      border: 1.5px solid #C5A95E;
+    }
+    .roi.oro {
+      background-color: #FFF9E5;
+      border: 2px solid #C5A95E;
+      font-weight: 700;
+    }
+    @media (max-width: 700px) {
+      body {
+        padding: 20px 0;
+      }
+      .container {
+        padding: 26px 8px 28px 8px;
+      }
+      h2 {
+        font-size: 2.1rem;
+      }
+      label, input, select, button {
+        font-size: 1rem;
+      }
+      table, th, td {
+        font-size: 0.95rem;
+      }
+      .roi {
+        font-size: 1rem;
+      }
+      button {
+        width: 100%;
+        margin: 15px 0 0 0;
+      }
+      button.reset {
+        margin-left: 0;
+      }
+    }
+  </style>
 </head>
 <body>
   <main class="container" role="main" aria-label="Calcolo costi e ROI immobiliare">
@@ -277,11 +257,57 @@
       }) + ' €';
     }
 
+    // Tabella onorari notarili per scaglioni di legge
+    function calcolaOnorarioNotaio(prezzo, doppioAtto) {
+      // Scaglioni: ogni voce [limite superiore, onorario]
+      const scaglioni = [
+        [20325, 0],
+        [27100, 745],
+        [33875, 810],
+        [50810, 910],
+        [67750, 1015],
+        [101625, 1150],
+        [135500, 1250],
+        [169375, 1355],
+        [203250, 1455],
+        [271000, 1655],
+        [338750, 1860],
+        [406500, 2030],
+        [474250, 2165],
+        [542000, 2265],
+        [609750, 2370],
+        [677500, 2470],
+        [1016250, 2845],
+        [1355000, 3045],
+        [1693750, 3215],
+        [2032500, 3385],
+        [2371250, 3520],
+        [2710000, 3655],
+        [3048750, 3790],
+        [3387500, 3925]
+      ];
+      let onorario = 0;
+      let found = false;
+      for (let i = 1; i < scaglioni.length; i++) {
+        if (prezzo > scaglioni[i - 1][0] && prezzo <= scaglioni[i][0]) {
+          onorario = scaglioni[i][1];
+          found = true;
+          break;
+        }
+      }
+      if (!found && prezzo > 3387500) {
+        onorario = 3925 + Math.ceil((prezzo - 3387500) / 1000000) * 405;
+      }
+      if (onorario === 0) onorario = 745; // Per importi bassi
+      return doppioAtto ? onorario * 2 : onorario;
+    }
+
     function calcola() {
       const prezzoInput = document.getElementById("prezzo");
       const renditaInput = document.getElementById("rendita");
       const tassoInput = document.getElementById("tasso");
       const durataInput = document.getElementById("durata");
+      const tipologia = document.getElementById("tipologia").value;
 
       const errorPrezzo = document.getElementById("errorPrezzo");
       const errorRendita = document.getElementById("errorRendita");
@@ -291,7 +317,6 @@
 
       const prezzo = parseFloat(prezzoInput.value);
       const rendita = parseFloat(renditaInput.value);
-      const tipologia = document.getElementById("tipologia").value;
       const tasso = parseFloat(tassoInput.value) / 100;
       const anni = parseInt(durataInput.value, 10);
 
@@ -301,74 +326,103 @@
         errorPrezzo.textContent = "Inserisci un prezzo valido maggiore di zero.";
         valid = false;
       }
-
       if (isNaN(rendita) || rendita < 0) {
         errorRendita.textContent = "Inserisci una rendita catastale valida (≥ 0).";
         valid = false;
       }
-
       if (!valid) {
         document.getElementById("output").innerHTML = "";
         return;
       }
 
+      // Acquisto da privato
       let baseImponibile = 0;
-let imposta = 0;
+      let impostaPrivato = 0;
+      if (tipologia === "prima") {
+        baseImponibile = rendita * 1.05 * 115.5;
+        impostaPrivato = Math.max(baseImponibile * 0.02, 1000);
+      } else {
+        baseImponibile = rendita * 1.05 * 126;
+        impostaPrivato = Math.max(baseImponibile * 0.09, 1000);
+      }
 
-if (tipologia === "prima") {
-  baseImponibile = rendita * 1.05 * 115.5;
-  imposta = Math.max(baseImponibile * 0.02, 1000);
-} else {
-  baseImponibile = rendita * 1.05 * 126;
-  imposta = Math.max(baseImponibile * 0.09, 1000);
-}
+      // Acquisto da costruttore
+      let iva = prezzo * (tipologia === "prima" ? 0.04 : 0.10);
+      let impostaCostruttore = 200; // imposta di registro fissa
 
+      // Provvigione agenzia
       let provvigione = prezzo < 100000 ? 5000 : prezzo * 0.05;
-      const notaio = prezzo * 0.015;
-      const investimento_totale = prezzo + imposta + notaio + provvigione;
 
-      const roiTargets = [3, 4, 6, 9];
-      const affittiNecessari = roiTargets.map(roi => (investimento_totale * roi / 100).toFixed(2));
-
-      // Mutuo
+      // Notaio: calcolo secondo tabella + doppio atto se mutuo
       const quotaMutuo = prezzo * 0.8;
-      const anticipo = prezzo - quotaMutuo;
-      const rateTotali = anni * 12;
-      const rataMensile = quotaMutuo * tasso / 12 / (1 - Math.pow(1 + tasso / 12, -rateTotali));
-      const totalePagato = rataMensile * rateTotali;
-      const interessi = totalePagato - quotaMutuo;
+      const attoDoppio = quotaMutuo > 0;
+      const notaio = calcolaOnorarioNotaio(prezzo, attoDoppio);
 
+      // Totali investimento
+      const investimento_privato = prezzo + impostaPrivato + notaio + provvigione;
+      const investimento_costruttore = prezzo + iva + impostaCostruttore + notaio + provvigione;
+
+      // ROI targets
+      const roiTargets = [3, 4, 6, 9];
+      const affittiNecessari_privato = roiTargets.map(roi => (investimento_privato * roi / 100).toFixed(2));
+      const affittiNecessari_costruttore = roiTargets.map(roi => (investimento_costruttore * roi / 100).toFixed(2));
+
+      // Output tabelle
       let html = `
+        <h3>Acquisto da Privato</h3>
         <table>
           <thead>
             <tr><th>Voce</th><th>Importo (€)</th></tr>
           </thead>
           <tbody>
-            <tr><td>Imposta di registro</td><td>${formatEuro(imposta)}</td></tr>
-            <tr><td>Costi notarili stimati</td><td>${formatEuro(notaio)}</td></tr>
+            <tr><td>Imposta di registro</td><td>${formatEuro(impostaPrivato)}</td></tr>
+            <tr><td>Costi notarili (onorari legge)</td><td>${formatEuro(notaio)}</td></tr>
             <tr><td>Provvigione agenzia</td><td>${formatEuro(provvigione)}</td></tr>
-            <tr><th>Totale investimento</th><th>${formatEuro(investimento_totale)}</th></tr>
+            <tr><th>Totale investimento</th><th>${formatEuro(investimento_privato)}</th></tr>
           </tbody>
         </table>
-
-        <div class="roi basso">🔴 ROI 3% ➜ Affitto annuo: ${formatEuro(affittiNecessari[0])}</div>
-  <div class="roi medio">🟡 ROI 4% ➜ Affitto annuo: ${formatEuro(affittiNecessari[1])}</div>
-  <div class="roi alto">🟢 ROI 6% ➜ Affitto annuo: ${formatEuro(affittiNecessari[2])}</div>
-  <div class="roi" style="background-color: #C5A95E; color: #000; border: 1.5px solid #000">⭐ ROI 9% (TOP) ➜ Affitto annuo: ${formatEuro(affittiNecessari[3])}</div>
-
-
+        <div class="roi basso">🔴 ROI 3% → Affitto annuo: ${formatEuro(affittiNecessari_privato[0])}</div>
+        <div class="roi medio">🟡 ROI 4% → Affitto annuo: ${formatEuro(affittiNecessari_privato[1])}</div>
+        <div class="roi alto">🟢 ROI 6% → Affitto annuo: ${formatEuro(affittiNecessari_privato[2])}</div>
+        <div class="roi" style="background-color: #C5A95E; color: #000; border: 1.5px solid #000">⭐ ROI 9% (TOP) → Affitto annuo: ${formatEuro(affittiNecessari_privato[3])}</div>
+        <br>
+        <h3>Acquisto da Costruttore</h3>
+        <table>
+          <thead>
+            <tr><th>Voce</th><th>Importo (€)</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>IVA ${tipologia === "prima" ? "4%" : "10%"}</td><td>${formatEuro(iva)}</td></tr>
+            <tr><td>Imposta di registro fissa</td><td>${formatEuro(impostaCostruttore)}</td></tr>
+            <tr><td>Costi notarili (onorari legge)</td><td>${formatEuro(notaio)}</td></tr>
+            <tr><td>Provvigione agenzia</td><td>${formatEuro(provvigione)}</td></tr>
+            <tr><th>Totale investimento</th><th>${formatEuro(investimento_costruttore)}</th></tr>
+          </tbody>
+        </table>
+        <div class="roi basso">🔴 ROI 3% → Affitto annuo: ${formatEuro(affittiNecessari_costruttore[0])}</div>
+        <div class="roi medio">🟡 ROI 4% → Affitto annuo: ${formatEuro(affittiNecessari_costruttore[1])}</div>
+        <div class="roi alto">🟢 ROI 6% → Affitto annuo: ${formatEuro(affittiNecessari_costruttore[2])}</div>
+        <div class="roi" style="background-color: #C5A95E; color: #000; border: 1.5px solid #000">⭐ ROI 9% (TOP) → Affitto annuo: ${formatEuro(affittiNecessari_costruttore[3])}</div>
+        <br>
         <h3>Simulazione Mutuo</h3>
         <table>
           <tbody>
             <tr><td>Quota mutuo (80%)</td><td>${formatEuro(quotaMutuo)}</td></tr>
-            <tr><td>Anticipo (20%)</td><td>${formatEuro(anticipo)}</td></tr>
-            <tr><td>Rata mensile (tasso ${ (tasso*100).toFixed(2)}%)</td><td>${formatEuro(rataMensile)}</td></tr>
-            <tr><td>Interessi totali pagati</td><td>${formatEuro(interessi)}</td></tr>
-            <tr><td>Totale pagato sul mutuo</td><td>${formatEuro(totalePagato)}</td></tr>
+            <tr><td>Anticipo (20%)</td><td>${formatEuro(prezzo - quotaMutuo)}</td></tr>
+            <tr><td>Rata mensile (tasso ${(tasso * 100).toFixed(2)}%)</td><td>${formatEuro(
+        quotaMutuo * tasso / 12 / (1 - Math.pow(1 + tasso / 12, -(anni * 12)))
+      )}</td></tr>
+            <tr><td>Interessi totali pagati</td><td>${
+              formatEuro(
+                (quotaMutuo * tasso / 12 / (1 - Math.pow(1 + tasso / 12, -(anni * 12))) * anni * 12) - quotaMutuo
+              )
+            }</td></tr>
+            <tr><td>Totale pagato sul mutuo</td><td>${
+              formatEuro(quotaMutuo * tasso / 12 / (1 - Math.pow(1 + tasso / 12, -(anni * 12))) * anni * 12)
+            }</td></tr>
           </tbody>
         </table>
       `;
-
       document.getElementById("output").innerHTML = html;
     }
 
